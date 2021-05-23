@@ -1,3 +1,4 @@
+import { MissingParamError } from '../errors/missing-param-error'
 import { HttpRequest, HttpResponse } from '../protocols/http'
 
 export class CreateGameController {
@@ -5,14 +6,14 @@ export class CreateGameController {
     if (!httpRequest.body.name) {
       return {
         statusCode: 400,
-        body: new Error('Missing param: name')
+        body: new MissingParamError('name')
       }
     }
 
     if (!httpRequest.body.price) {
       return {
         statusCode: 400,
-        body: new Error('Missing param: price')
+        body: new MissingParamError('price')
       }
     }
 
