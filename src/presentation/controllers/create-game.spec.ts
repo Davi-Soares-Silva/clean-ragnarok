@@ -1,3 +1,4 @@
+import { MissingParamError } from '../errors/missing-param-error'
 import { CreateGameController } from './create-game'
 
 describe('CreateGame Controller', () => {
@@ -13,7 +14,7 @@ describe('CreateGame Controller', () => {
     const httResponse = sut.handle(httpRequest)
 
     expect(httResponse.statusCode).toBe(400)
-    expect(httResponse.body).toEqual(new Error('Missing param: name'))
+    expect(httResponse.body).toEqual(new MissingParamError('name'))
   })
 
   test('should return 400 if no price is provided', () => {
@@ -28,6 +29,6 @@ describe('CreateGame Controller', () => {
     const httResponse = sut.handle(httpRequest)
 
     expect(httResponse.statusCode).toBe(400)
-    expect(httResponse.body).toEqual(new Error('Missing param: price'))
+    expect(httResponse.body).toEqual(new MissingParamError('price'))
   })
 })
