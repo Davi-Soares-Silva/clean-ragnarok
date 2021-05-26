@@ -1,20 +1,11 @@
-import { MissingParamError } from '../errors/missing-param-error'
-import { HttpRequest, HttpResponse } from '../protocols/http'
-import { badRequest } from '../helpers/bad-request'
+import { HttpRequest, HttpResponse } from '../protocols/http';
+import { Controller } from '../protocols/controller';
 
-export class CreateGameController {
-  handle (httpRequest: HttpRequest): HttpResponse {
-    if (!httpRequest.body.name) {
-      return badRequest(new MissingParamError('name'))
-    }
-
-    if (!httpRequest.body.price) {
-      return badRequest(new MissingParamError('price'))
-    }
-
-    return {
+export class CreateGameController implements Controller {
+  handle (httpRequest: HttpRequest): Promise<HttpResponse> {
+    return new Promise(resolve => resolve({
       statusCode: 200,
-      body: null
-    }
+      body: {}
+    }))
   }
 }
