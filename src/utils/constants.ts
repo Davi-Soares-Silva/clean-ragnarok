@@ -11,4 +11,5 @@ export const DATABASE = {
 
 export const SERVER = {
   PORT: process.env.SERVER_PORT || 3333,
+  BASE_URI: process.env.SERVER_BASE_URI || '',
 }
