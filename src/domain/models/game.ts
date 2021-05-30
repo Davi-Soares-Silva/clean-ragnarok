@@ -1,5 +1,5 @@
 export interface GameModel {
-  gameId: string;
+  gameId: number;
   name: string;
   description: string;
   price: number;
