@@ -1,10 +1,13 @@
 import { Router } from 'express';
+import { createGame } from '../../../validations/usecases/create-game';
 import { adaptRoute } from '../../adapters/adaptRoute';
+import { adaptValidationMiddleware } from '../../adapters/adaptValidationMiddleware';
 import { makeCreateGameController } from '../../factories/make-create-game';
 
 export default (routes: Router) => {
   routes.post(
     '/games',
+    adaptValidationMiddleware(createGame),
     adaptRoute(makeCreateGameController()),
   )
 }

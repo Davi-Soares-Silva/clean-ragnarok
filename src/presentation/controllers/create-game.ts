@@ -8,9 +8,7 @@ export class CreateGameController implements Controller {
   constructor(private readonly createGame: CreateGame) {}
 
   public async handle (httpRequest: HttpRequest): Promise<HttpResponse> {
-    try {
-      console.log(httpRequest.body);
-      
+    try {      
       const { name, description, price, platformId, imageUrl } = httpRequest.body;
 
 
