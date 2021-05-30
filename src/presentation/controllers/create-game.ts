@@ -1,7 +1,8 @@
 import { HttpRequest, HttpResponse } from '../protocols/http';
 import { Controller } from '../protocols/controller';
-import { DbCreateGame } from '../../data/usecases/db-create-game';
 import { CreateGame } from '../../domain/usecases/create-game';
+import { created, serverError } from '../../utils/response';
+import { badRequest } from '../helpers/bad-request';
 
 export class CreateGameController implements Controller {
   constructor(private readonly createGame: CreateGame) {}
@@ -13,7 +14,7 @@ export class CreateGameController implements Controller {
       const { name, description, price, platformId, imageUrl } = httpRequest.body;
 
 
-      await this.createGame.create({
+      const game = await this.createGame.create({
         name,
         description,
         price,
@@ -21,21 +22,14 @@ export class CreateGameController implements Controller {
         imageUrl,
       })
 
-      return {
-        statusCode: 201,
-        body: {
-          message: 'Game criado com sucesso!'
-        }
-      }
+      return created('Jogo criado com sucesso', game)
 
     } catch (error) {
-      console.log(error);
-
-      return {
-        statusCode: 500,
-        body: {
-          message: 'Erro ao criar game'
-        }
+      switch (error.message) {
+        case 'ERROR_CREATING_GAME':
+          return badRequest(error)
+        default:
+          return serverError(error);
       }
     }
   }
