@@ -1,5 +1,5 @@
-import { CreateGame } from '../../domain/usecases/create-game';
-import { AddGameRepository } from '../protocols/db/add-game-repository';
+import { CreateGame } from '../../../domain/usecases/create-game';
+import { AddGameRepository } from '../../protocols/db/add-game-repository';
 
 export class DbCreateGame implements CreateGame {
   constructor (

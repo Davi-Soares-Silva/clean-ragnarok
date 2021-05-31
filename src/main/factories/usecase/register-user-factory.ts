@@ -1,4 +1,4 @@
-import { DbRegisterUser } from "../../../data/usecases/db-register-user";
+import { DbRegisterUser } from "../../../data/usecases/db/db-register-user";
 import { RegisterUser } from "../../../domain/usecases/register-user";
 import { BcryptAdapter } from "../../../infra/cryptography/bcrypt-adapter";
 import { UserRepository } from "../../../infra/db/mysql/user/user-repository";

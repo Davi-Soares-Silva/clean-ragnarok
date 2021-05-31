@@ -1,3 +1,5 @@
+import { makeLoginUserController } from '../../factories/controllers/make-login-user'
+import { loginUser } from '../../../validations/usecases/login-user';
 import { Router } from 'express';
 import { registerUser } from '../../../validations/usecases/register-user';
 import { adaptRoute } from '../../adapters/adaptRoute';
@@ -9,5 +11,11 @@ export default (routes: Router) => {
     '/register',
     adaptValidationMiddleware(registerUser),
     adaptRoute(makeRegisterUserController())
+  )
+
+  routes.post(
+    '/authentication',
+    adaptValidationMiddleware(loginUser),
+    adaptRoute(makeLoginUserController()),
   )
 }

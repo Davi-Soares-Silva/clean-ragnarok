@@ -1,4 +1,4 @@
-import { DbCreateGame } from "../../../data/usecases/db-create-game";
+import { DbCreateGame } from "../../../data/usecases/db/db-create-game";
 import { GameRepository } from "../../../infra/db/mysql/game/game-repository";
 import { CreateGameController } from "../../../presentation/controllers/create-game";
 
