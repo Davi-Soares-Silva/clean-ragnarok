@@ -41,3 +41,14 @@ export const notFound = (message: string, error?: any) => {
     },
   };
 };
+
+export const conflict = (message: string, error?: any) => {
+  return {
+    statusCode: 409,
+    body: {
+      message,
+      payload: {},
+      error,
+    },
+  };
+};
