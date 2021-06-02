@@ -1,6 +1,6 @@
+import { Router } from 'express';
 import { makeLoginUserController } from '../../factories/controllers/make-login-user'
 import { loginUser } from '../../../validation/usecases/login-user';
-import { Router } from 'express';
 import { registerUser } from '../../../validation/usecases/register-user';
 import { adaptRoute } from '../../adapters/adaptRoute';
 import { adaptValidationMiddleware } from '../../adapters/adaptValidationMiddleware';

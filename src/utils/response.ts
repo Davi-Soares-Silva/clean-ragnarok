@@ -1,3 +1,14 @@
+export const ok = (message: string, payload: object) => {
+  return {
+    statusCode: 200,
+    body: {
+      message,
+      payload,
+      error: [],
+    },
+  };
+};
+
 export const created = (message: string, payload: object) => {
   return {
     statusCode: 201,
