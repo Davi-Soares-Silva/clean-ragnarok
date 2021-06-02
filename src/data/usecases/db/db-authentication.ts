@@ -16,7 +16,7 @@ export class DbAuthentication implements Authentication {
     if(!user) throw new Error('USER_NOT_FOUND')
 
     const isValid = await this.hashComparer.compare(password, user.password);
-    if(!isValid) throw new Error('WRONG PASSWORD');
+    if(!isValid) throw new Error('WRONG_PASSWORD');
 
     const accessToken = await this.encrypter.encrypt(user.userId);
 
