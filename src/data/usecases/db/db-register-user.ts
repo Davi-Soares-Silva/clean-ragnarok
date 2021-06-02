@@ -1,7 +1,7 @@
-import { RegisterUser } from '../../domain/usecases/register-user';
-import { Hasher } from '../protocols/cryptography/hasher';
-import { AddUserRepository } from '../protocols/db/add-user-repository';
-import { CheckUserByEmailRepository } from '../protocols/db/check-user-by-email-repository';
+import { RegisterUser } from '../../../domain/usecases/register-user';
+import { Hasher } from '../../protocols/cryptography/hasher';
+import { AddUserRepository } from '../../protocols/db/add-user-repository';
+import { CheckUserByEmailRepository } from '../../protocols/db/check-user-by-email-repository';
 
 export class DbRegisterUser implements RegisterUser {
   constructor(
