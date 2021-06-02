@@ -3,7 +3,7 @@ export interface GameModel {
   name: string;
   description: string;
   price: number;
-  platformId: string;
+  platformId: number;
   imageUrl: string;
   createdAt: string;
   updatedAt: string;

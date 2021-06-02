@@ -1,8 +1,8 @@
 export interface ListGameById {
-  listById: (id: number) => Promise<GameModel>;
+  listById: (gameId: ListGameById.Params) => ListGameById.Result;
 }
 
-export namespace ListGamebyId {
+export namespace ListGameById {
   export type Params = number;
 
   export type Result = Promise<{

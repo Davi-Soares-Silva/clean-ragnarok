@@ -2,7 +2,7 @@ import { Router } from 'express';
 import { createGame } from '../../../validation/usecases/create-game';
 import { adaptRoute } from '../../adapters/adaptRoute';
 import { adaptValidationMiddleware } from '../../adapters/adaptValidationMiddleware';
-import { makeCreateGameController, makeListGamesController } from '../../factories/controllers';
+import { makeCreateGameController, makeListGamesController, makeListGameByIdController } from '../../factories/controllers';
 
 
 export default (routes: Router) => {
@@ -14,5 +14,11 @@ export default (routes: Router) => {
     )
     .get(
       adaptRoute(makeListGamesController())
+    )
+
+  routes
+    .route('/games/:id')
+    .get(
+      adaptRoute(makeListGameByIdController())
     )
 }
