@@ -1,7 +1,6 @@
 import { RegisterUserController } from "../../../presentation/controllers/register-user";
-import { makeDbRegisterUser } from "../usecase/register-user-factory";
+import { makeDbRegisterUser } from "../usecases/register-user-factory";
 
 export function makeRegisterUserController() {
-  const dbRegisterUser = makeDbRegisterUser();
-  return new RegisterUserController(dbRegisterUser);
+  return new RegisterUserController(makeDbRegisterUser());
 }

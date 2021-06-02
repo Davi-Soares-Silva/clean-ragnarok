@@ -1,5 +1,5 @@
 import * as yup from 'yup';
-import { string, email } from '../'
+import { string, email } from '..'
 
 const loginUser = yup.object().shape({
   email: email,

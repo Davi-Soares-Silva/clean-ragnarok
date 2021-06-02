@@ -1,7 +1,7 @@
 import { makeLoginUserController } from '../../factories/controllers/make-login-user'
-import { loginUser } from '../../../validations/usecases/login-user';
+import { loginUser } from '../../../validation/usecases/login-user';
 import { Router } from 'express';
-import { registerUser } from '../../../validations/usecases/register-user';
+import { registerUser } from '../../../validation/usecases/register-user';
 import { adaptRoute } from '../../adapters/adaptRoute';
 import { adaptValidationMiddleware } from '../../adapters/adaptValidationMiddleware';
 import { makeRegisterUserController } from '../../factories/controllers/make-register-user';

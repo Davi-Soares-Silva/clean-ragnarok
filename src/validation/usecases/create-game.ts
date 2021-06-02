@@ -1,5 +1,5 @@
 import * as yup from 'yup';
-import { number, string, url } from '../';
+import { number, string, url } from '..';
 
 export const createGame = yup.object().shape({
   name: string.required('O nome é obrigatório'),
