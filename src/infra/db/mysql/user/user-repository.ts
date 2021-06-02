@@ -12,7 +12,6 @@ export class UserRepository implements AddUserRepository, CheckUserByEmailReposi
       ...data,
     }
 
-    delete createdUser.password;
     return formateCamelCaseKeysForSnakeCase(createdUser);
   }
 
