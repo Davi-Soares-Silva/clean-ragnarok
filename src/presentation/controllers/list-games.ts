@@ -11,7 +11,6 @@ export class ListGamesController implements Controller {
 
       return ok('Consulta realizada com sucesso', games)
     } catch (error) {
-      console.log(error);
       return serverError(error);      
     }
   }
