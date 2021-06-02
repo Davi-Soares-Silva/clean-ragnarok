@@ -1,4 +1,4 @@
-import { HashComparer } from "@/data/protocols/cryptography/hash-comparer";
+import { Encrypter, HashComparer } from "@/data/protocols/cryptography";
 import { LoadUserByEmailRepository } from "@/data/protocols/db/load-user-by-email-repository";
 import { Authentication } from "@/domain/usecases/authentication";
 
@@ -6,6 +6,7 @@ export class DbAuthentication implements Authentication {
   constructor (
     private readonly loadUserByEmailRepository: LoadUserByEmailRepository,
     private readonly hashComparer: HashComparer, 
+    private readonly encrypter: Encrypter,
   ) {}
   async auth (data: Authentication.Params): Authentication.Result {
 
@@ -17,10 +18,11 @@ export class DbAuthentication implements Authentication {
     const isValid = await this.hashComparer.compare(password, user.password);
     if(!isValid) throw new Error('WRONG PASSWORD');
 
+    const accessToken = await this.encrypter.encrypt(user.userId);
 
     return {
-      accessToken: 'token',
-      name: user,
+      accessToken,
+      name: user.name,
     }
   }
 }
