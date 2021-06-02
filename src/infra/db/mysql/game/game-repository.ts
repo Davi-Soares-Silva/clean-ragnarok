@@ -1,3 +1,4 @@
+import { DeleteGameRepository } from "@/data/protocols/db/db-delete-game";
 import { ListGameByIdRepository } from "@/data/protocols/db/list-game-by-id-repository";
 import { ListGamesRepository } from "@/data/protocols/db/list-games-repository";
 import { UpdateGameRepository } from "@/data/protocols/db/update-game";
@@ -12,7 +13,8 @@ export class GameRepository implements
   AddGameRepository,
   ListGamesRepository,
   ListGameByIdRepository,
-  UpdateGameRepository {
+  UpdateGameRepository,
+  DeleteGameRepository {
   public async list(): ListGamesRepository.Result {
     const games = await mysql('tb_game as g')
       .select(
@@ -62,5 +64,11 @@ export class GameRepository implements
       .update(data.game)
       .where('game_id', '=', data.id);
 
+  }
+
+  public async delete(id: DeleteGameRepository.Params): DeleteGameRepository.Result {
+    const game = await mysql('tb_game')
+      .update({ deleted_at: new Date() })
+      .where('game_id', id);
   }
 }

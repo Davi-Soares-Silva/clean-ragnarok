@@ -4,3 +4,4 @@ export * from './make-login-user';
 export * from './make-register-user';
 export * from './make-list-game-by-id';
 export * from './make-update-game';
+export * from './make-delete-game';

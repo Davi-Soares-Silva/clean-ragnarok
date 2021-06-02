@@ -7,6 +7,7 @@ import {
   makeListGamesController,
   makeListGameByIdController,
   makeUpdateGameController,
+  makeDeleteGame,
 } from '../../factories/controllers';
 
 
@@ -23,4 +24,5 @@ export default (routes: Router) => {
     .route('/games/:id')
     .get(adaptRoute(makeListGameByIdController()))
     .put(adaptRoute(makeUpdateGameController()))
+    .delete(adaptRoute(makeDeleteGame()))
 }
