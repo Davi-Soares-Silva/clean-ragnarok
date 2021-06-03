@@ -1,5 +1,6 @@
+import { makeError } from "../../utils";
 import { UpdateGame } from "../../domain/usecases/update-game";
-import { ok, serverError } from "../../utils/response";
+import { notFound, ok, serverError } from "../../utils/response";
 import { Controller, HttpRequest, HttpResponse } from "../protocols";
 
 export class UpdateGameController implements Controller {
@@ -11,7 +12,15 @@ export class UpdateGameController implements Controller {
 
       return ok('Jogo atualizado com sucesso', {})
     } catch (error) {
-      return serverError(error);
+      switch(error.message) {
+        case 'GAME_NOT_FOUND':
+          return notFound(
+            'Jogo não encontrado',
+            makeError('Id', 'o Id inserido é inválido.')
+          )
+        default:
+          return serverError(error);
+      }
     }
   }
 }

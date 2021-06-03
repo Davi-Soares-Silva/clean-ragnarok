@@ -1,5 +1,6 @@
+import { makeError } from "../../utils";
 import { ListGameById } from "../../domain/usecases/list-game-by-id";
-import { ok, serverError } from "../../utils/response";
+import { notFound, ok, serverError } from "../../utils/response";
 import { HttpRequest, HttpResponse, Controller } from "../protocols";
 
 export class ListGameByIdController implements Controller {
@@ -15,7 +16,15 @@ export class ListGameByIdController implements Controller {
   
       return ok('Consulta realizada com sucesso!', game);
     } catch(error) {
-      return serverError(error);
+      switch(error.message) {
+        case 'GAME_NOT_FOUND':
+          return notFound(
+            'Jogo não encontrado.',
+            makeError('Id', 'O id informado é inválido.'),
+          )
+        default:
+          return serverError(error);
+      }
     }
   }
 }

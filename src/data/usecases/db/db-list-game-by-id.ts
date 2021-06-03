@@ -9,6 +9,8 @@ export class DbListGameById implements ListGameById {
   async listById(gameId: ListGameById.Params): ListGameById.Result {
     const game = await this.listGameByIdRepository.listById(gameId);
     
+    if(!game) throw new Error('GAME_NOT_FOUND');
+    
     return game;
   }
 }

@@ -4,7 +4,7 @@ import { DeleteGameControler } from "../../../presentation/controllers/delete-ga
 
 export function makeDeleteGame() {
   const gameRepository = new GameRepository();
-  const dbDeleteGame = new DbDeleteGame(gameRepository);
+  const dbDeleteGame = new DbDeleteGame(gameRepository, gameRepository);
 
   return new DeleteGameControler(dbDeleteGame);
 }

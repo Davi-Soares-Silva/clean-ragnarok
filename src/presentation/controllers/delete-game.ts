@@ -1,5 +1,6 @@
+import { makeError } from "../../utils";
 import { DeleteGame } from "../../domain/usecases/delete-game";
-import { ok, serverError } from "../../utils/response";
+import { notFound, ok, serverError } from "../../utils/response";
 import { Controller, HttpRequest, HttpResponse } from "../protocols";
 
 export class DeleteGameControler implements Controller {
@@ -15,8 +16,15 @@ export class DeleteGameControler implements Controller {
 
       return ok('Jogo deletado com sucesso!', {});
     } catch(error) {
-      console.log(error);
-      return serverError(error);
+      switch(error.message) {
+        case 'GAME_NOT_FOUND':
+          return notFound(
+            'Jogo não encontrado.',
+            makeError('Id', 'O id inserido é inválido.')
+          )
+        default:
+          return serverError(error);
+      }
     }
   }
 }
