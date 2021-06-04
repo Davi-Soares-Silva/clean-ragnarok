@@ -63,3 +63,18 @@ export const conflict = (message: string, error?: any) => {
     },
   };
 };
+
+export const forbidden = (error: Error) => {
+  return {
+    statusCode: 403,
+    body: {
+      message: 'Ops, parece que não está autenticado',
+      error: [
+        {
+          message: 'Ops, parece que não está autenticado',
+          param: 'authorization',
+        },
+      ],
+    },
+  };
+};

@@ -1,3 +1,4 @@
+import { makeError } from "../../utils";
 import { RegisterUser } from "../../domain/usecases/register-user";
 import { badRequest, conflict, created, serverError } from "../../utils/response";
 import { HttpRequest, HttpResponse, Controller } from "../protocols";
@@ -25,7 +26,10 @@ export class RegisterUserController implements Controller {
         case 'ERROR_CREATING_USER':
           return badRequest(error);
         case 'EMAIL_ALREADY_EXISTS':
-          return conflict('Email informado já existe!');
+          return conflict(
+            'Erro ao cadastrar.',
+            makeError('Email', 'O email informado já existe.')
+          );
         default:
           return serverError(error);
       }

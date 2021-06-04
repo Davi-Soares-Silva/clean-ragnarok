@@ -1,5 +1,5 @@
 import { CheckGameByIdRepository } from "@/data/protocols/db/check-game-by-id-repository";
-import { UpdateGameRepository } from "@/data/protocols/db/update-game";
+import { UpdateGameRepository } from "@/data/protocols/db/update-game-repository";
 import { UpdateGame } from "@/domain/usecases/update-game";
 
 export class DbUpdateGame implements UpdateGame {

@@ -1,4 +1,4 @@
-import { DeleteGameRepository } from "@/data/protocols/db/delete-game";
+import { DeleteGameRepository } from "@/data/protocols/db/delete-game-repository";
 import { CheckGameByIdRepository } from "@/data/protocols/db/check-game-by-id-repository";
 import { DeleteGame } from "@/domain/usecases/delete-game";
 

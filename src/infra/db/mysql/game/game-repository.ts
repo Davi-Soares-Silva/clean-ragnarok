@@ -1,8 +1,8 @@
 import { CheckGameByIdRepository } from "@/data/protocols/db/check-game-by-id-repository";
-import { DeleteGameRepository } from "@/data/protocols/db/delete-game";
+import { DeleteGameRepository } from "@/data/protocols/db/delete-game-repository";
 import { ListGameByIdRepository } from "@/data/protocols/db/list-game-by-id-repository";
 import { ListGamesRepository } from "@/data/protocols/db/list-games-repository";
-import { UpdateGameRepository } from "@/data/protocols/db/update-game";
+import { UpdateGameRepository } from "@/data/protocols/db/update-game-repository";
 import { AddGameRepository } from "../../../../data/protocols/db/add-game-repository";
 import {
   formateCamelCaseKeysForSnakeCase,
@@ -27,7 +27,8 @@ export class GameRepository implements
         'g.image_url',
         'p.name as platform'
       )
-      .innerJoin("tb_platform as p", "p.platform_id", "g.platform_id");
+      .innerJoin("tb_platform as p", "p.platform_id", "g.platform_id")
+      .whereNull('g.deleted_at');
 
     return formateSnakeCaseKeysForCamelCase(games);
   }

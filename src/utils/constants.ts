@@ -13,3 +13,7 @@ export const SERVER = {
   PORT: process.env.SERVER_PORT || 3333,
   BASE_URI: process.env.SERVER_BASE_URI || '',
 }
+
+export const JWT = {
+  APP_SECRET: process.env.APP_SECRET || '',
+}
